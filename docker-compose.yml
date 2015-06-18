@@ -1,0 +1,9 @@
+trayhttpd:
+  build: config
+  volumes:
+   - www:/var/www/html
+  privileged: true
+  stdin_open: true
+  tty: true
+  ports:
+   - "80:80"
