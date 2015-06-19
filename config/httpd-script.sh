@@ -8,8 +8,11 @@ VAR_DNS="nameserver 192.168.10.248 \nnameserver 192.168.10.249"
 printf "${VAR_DNS}" > /etc/resolv.conf
 
 sed -i "s/AllowOverride None/AllowOverride All/g" /etc/httpd/conf/httpd.conf
+sed -i "s/#NameVirtualHost/NameVirtualHost/g" /etc/httpd/conf/httpd.conf 
+
+
 
 rm -rf /run/httpd/* /tmp/httpd*
 
-exec /usr/sbin/apachectl -D FOREGROUND
+exec /usr/sbin/httpd -D FOREGROUND
 
