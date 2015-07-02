@@ -3,6 +3,8 @@ FROM tutum/centos:centos6
 
 LABEL Vendor="CentOS"
 
+ENV PHANTOM_JS_VERSION 1.9.7-linux-x86_64
+
 RUN echo 'Estamos comecando a inicializar seu container'
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 
@@ -13,9 +15,14 @@ RUN npm install bower -g
 RUN curl -sS https://getcomposer.org/installer | php  -- --install-dir=/bin
 RUN cp /bin/composer.phar /bin/composer
 
+
 EXPOSE 80
+EXPOSE 9876
+
 ADD httpd/virtualHost.conf /etc/httpd/conf.d/
 ADD httpd-script.sh /httpd-script.sh
+
+ADD .ssh/* /root/.ssh/
 
 RUN mkdir -p /var/www/html && chmod -Rf 777 /var/www/html
 RUN chmod -v +x /httpd-script.sh
