@@ -20,6 +20,8 @@ RUN cp /bin/composer.phar /bin/composer
 EXPOSE 80
 EXPOSE 9876
 
+RUN adduser honjoya -g 0; echo '%honjoya ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 ADD httpd/virtualHost.conf /etc/httpd/conf.d/
 ADD httpd/httpd.conf /etc/httpd/conf/
 ADD httpd-script.sh /httpd-script.sh

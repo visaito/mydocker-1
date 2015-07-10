@@ -4,13 +4,8 @@
 # context after restarting the container.  httpd won't start correctly
 # if it thinks it is already running.
 
-VAR_DNS="nameserver 192.168.10.248 \nnameserver 192.168.10.249"
+VAR_DNS="nameserver 192.168.10.248 \nnameserver 192.168.10.249  \nnameserver 8.8.8.8"
 printf "${VAR_DNS}" > /etc/resolv.conf
-
-sed -i "s/AllowOverride None/AllowOverride All/g" /etc/httpd/conf/httpd.conf
-sed -i "s/#NameVirtualHost/NameVirtualHost/g" /etc/httpd/conf/httpd.conf 
-
-
 
 rm -rf /run/httpd/* /tmp/httpd*
 
