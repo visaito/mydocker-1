@@ -4,8 +4,16 @@ trayhttpd:
    - www:/var/www/html
   working_dir: /var/www/html
   build: config
+  links:
+    - memcached
   ports:
    - "80:80"
   stdin_open: true
   tty: true
-
+memcached:
+  image: memcached
+  ports:
+   - "11211:11211"
+  
+  
+  
