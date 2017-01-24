@@ -10,4 +10,3 @@ printf "${VAR_DNS}" > /etc/resolv.conf
 rm -rf /run/httpd/* /tmp/httpd*
 
 exec /usr/sbin/httpd -D FOREGROUND
-

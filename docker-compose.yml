@@ -1,16 +1,20 @@
 trayhttpd:
+  mem_limit: 2048M
+  cpu_shares: 4
   privileged: true
   volumes:
-   - www:/var/www/html
+   - ./www:/var/www/html
   working_dir: /var/www/html
   build: config
   links:
-    - memcached
+    - redis
   ports:
    - "80:80"
   stdin_open: true
   tty: true
-memcached:
-  image: memcached
+redis:
+  mem_limit: 512M
+  cpu_shares: 4
+  image: redis
   ports:
-   - "11211:11211"
+   - "6379:6379"
